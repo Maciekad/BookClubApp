@@ -7,12 +7,12 @@ const Gallery = () => {
             <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active col-12 text-center">
-                        <img className="border rounded d-inline col-4 col-lg-3 p-2" src="images/6.jpg"
-                            src="images/pisanie.png" alt="First slide"/>
-                        <img className="border rounded d-inline col-4 col-lg-3 p-2" src="images/7.jpg"
-                            src="images/Roznorodnosc.png" alt="First slide"/>
-                        <img className="border rounded d-inline col-4 col-lg-3 p-2" src="images/8.jpg"
-                            src="images/pisanie.png" alt="First slide"/>
+                        <img className="border rounded d-inline col-4 col-lg-3 p-1" src="images/6.jpg"
+                            alt="First slide"/>
+                        <img className="border rounded d-inline col-4 col-lg-3 p-1" src="images/7.jpg"
+                             alt="First slide"/>
+                        <img className="border rounded d-inline col-4 col-lg-3 p-1" src="images/8.jpg"
+                             alt="First slide"/>
                     </div>
                     <div className="carousel-item col-12 text-center">
                         <img className="border rounded d-inline col-4 col-lg-3 p-2" src="images/1.jpg" alt="Second slide"/>

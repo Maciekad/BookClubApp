@@ -31,11 +31,11 @@ const Footer = () => {
           />
           <button className="btn btn-light p-1 mb-1">Subscribe</button>
           <div className="row pt-4">
-            <i className="px-3 fab fa-facebook-square"></i>
-            <i className="pr-3 fab fa-instagram"></i>
-            <i className="pr-3 fab fa-twitter"></i>
-            <i className="pr-3 fab fa-snapchat-ghost"></i>
-            <i className="pr-3 fab fa-youtube"></i>
+            <i className="col-1 fab fa-facebook-square"></i>
+            <i className="col-1 fab fa-instagram"></i>
+            <i className="col-1 fab fa-twitter"></i>
+            <i className="col-1 fab fa-snapchat-ghost"></i>
+            <i className="col-1 fab fa-youtube"></i>
           </div>
         </div>
       </div>
