@@ -14,7 +14,7 @@ const Footer = () => {
             <p>Pricing</p>
             <p>Contact Us</p>
           </div>
-          <div class="col-3 mt-5">
+          <div className="col-3 mt-5">
             <p>Blog</p>
             <p>Search</p>
             <p>T & Cs</p>
