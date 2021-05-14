@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 
 const Navigation = () => {
   return (
@@ -24,7 +26,7 @@ const Navigation = () => {
                             <div className="nav-link bg-light text-dark rounded">Home</div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="">Books</a>
+                            <Link className="nav-link" to="/books">Books</Link>
                         </li>
                         <li className="nav-item">
                             <div className="nav-link" >Sign In</div>
