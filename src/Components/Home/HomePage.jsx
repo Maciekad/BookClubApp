@@ -1,9 +1,9 @@
 import Header from "./Header";
-import Navigation from "./Navigation";
+import Navigation from "../Shared/Navigation";
 import Offert from './Offert';
 import Gallery from './Gallery';
 import Video from './Video';
-import Footer from './Footer';
+import Footer from '../Shared/Footer';
 
 const HomePage = () => {
   return (
