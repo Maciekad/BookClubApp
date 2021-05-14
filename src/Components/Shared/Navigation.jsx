@@ -23,10 +23,10 @@ const Navigation = () => {
                     </form>
                     <ul className="mx-2 col-5 d-flex justify-content-end navbar-nav">
                         <li className="nav-item">
-                            <div className="nav-link bg-light text-dark rounded">Home</div>
+                            <Link className="nav-link bg-light text-dark rounded" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/books">Books</Link>
+                            <Link className="nav-link text-light" to="/books">Books</Link>
                         </li>
                         <li className="nav-item">
                             <div className="nav-link" >Sign In</div>
