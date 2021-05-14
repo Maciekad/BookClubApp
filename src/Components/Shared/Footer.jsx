@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className="position-relative footer col-12">
-      <div className="row">
+      <div className="row m-auto">
         <div className="col-6 d-flex justify-content-center align-items-center">
           <div className="col-3 mt-5">
             <p>

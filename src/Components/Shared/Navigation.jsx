@@ -24,7 +24,7 @@ const Navigation = () => {
                             <div className="nav-link bg-light text-dark rounded">Home</div>
                         </li>
                         <li className="nav-item">
-                            <div className="nav-link" >Books</div>
+                            <a className="nav-link" href="">Books</a>
                         </li>
                         <li className="nav-item">
                             <div className="nav-link" >Sign In</div>
