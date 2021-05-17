@@ -15,6 +15,13 @@
     border-radius: 5px;
     border: 1px solid rgba(255, 252, 252, 0.781);
   }
+  li button {
+    border: none;
+    background: none;
+  }
+  li button:hover {
+    color: #7aad8c; 
+  }
   a {
     color: white !important;
   }
