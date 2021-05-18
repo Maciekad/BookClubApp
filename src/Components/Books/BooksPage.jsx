@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import Footer from '../Shared/Footer';
 import Navigation from '../Shared/Navigation';
 import Book from './Book';
@@ -11,28 +12,56 @@ const BooksPage = () => {
         {number: 2, title: 'Harry Potter i Więznień Azkabanu', author: 'J.K Rowling', category: "Fantastyka",  img: "https://kbimages1-a.akamaihd.net/82b4eff1-fbcf-44ed-952c-1c9e21198d10/1200/1200/False/harry-potter-i-wiezien-azkabanu.jpg"},
         {number: 3, title: 'Pożegnanie z bronią', author: 'Ernest Hemingway', category: "Obyczajowe",  img: "https://images.unsplash.com/photo-1619060303466-f59b9e35e2e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80"},
         {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
+        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
     ]);
+    const [data, setData] = useState([]);
     const [categories, setCategories] = useState(
       ["Beletrystyka", "Biografie i pamiętniki", "Biznes i ekonomia", "Fantastyka", "Romanse", "Obyczajowe"]
       );
     
-
     const [filter, setFilter] = useState("");
 
     const [authors, setAuthors] = useState(
       ["Alicja Pawlak","Ernest Hemingway", "J.K Rowling", "Janek Kowal"]
     )
+    const[offset, setOffset] = useState(0);
+    const[perPage] = useState(10);
+    const[pageCount, setPageCount] = useState(0);
 
-    const booksList = () => {
-      if(filter === ""){
-        console.log("dupa")
-        return books.map((book) => <Book book={book} />);
-      }else if(categories.includes(filter)){
-        return books.filter(book => book.category === filter).map((book) => <Book book={book} />);
-      }else if(authors.includes(filter)){
-        return books.filter(book => book.author === filter).map((book) => <Book book={book} />);
+    const getBooks = () => {
+
+      let data = [...books];
+
+      if (categories.includes(filter)) {
+        data = data.filter((book) => book.category === filter)
+      } else if (authors.includes(filter)) {
+        data = data
+          .filter((book) => book.author === filter)
       }
+
+      
+      const postData = data.slice(offset, offset+perPage);
+      console.log(postData);
+      setData(postData);
+      setPageCount(Math.ceil(data.length / perPage));
+
     }
+
+    const handlePageClick = (e) => {
+      const selectedPage = e.selected;
+      setOffset(selectedPage + 1)
+  };
+
+    useEffect(() => {
+      getBooks();
+    }, [offset, filter])
 
     return (
       <div>
@@ -54,7 +83,9 @@ const BooksPage = () => {
                   <h6>Kategorie</h6>
                   {categories.map((category) => (
                     <li>
-                      <button onClick={() =>setFilter(category)}>{category}</button>
+                      <button onClick={() => setFilter(category)}>
+                        {category}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -62,7 +93,9 @@ const BooksPage = () => {
                   <h6>Autor</h6>
                   {authors.map((author) => (
                     <li>
-                      <button onClick={() => setFilter(author)}>{author}</button>
+                      <button onClick={() => setFilter(author)}>
+                        {author}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -72,7 +105,20 @@ const BooksPage = () => {
               <h3>Sprawdź najnowsze książki</h3>
               <hr />
               <div className="row">
-               {booksList()}
+                {data.map((book) => (
+                  <Book book={book} />
+                ))}
+                <ReactPaginate
+                  previousLabel={"prev"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={pageCount}
+                  onPageChange={handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
               </div>
             </div>
           </div>
