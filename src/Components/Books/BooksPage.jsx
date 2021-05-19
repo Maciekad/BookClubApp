@@ -24,49 +24,55 @@ const BooksPage = () => {
         {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
     ]);
     const [data, setData] = useState([]);
+    const [displayedData, setDisplayedData] = useState([])
     const [categories, setCategories] = useState(
       ["Beletrystyka", "Biografie i pamiętniki", "Biznes i ekonomia", "Fantastyka", "Romanse", "Obyczajowe"]
       );
     
-    const [filter, setFilter] = useState("");
+    const [filter, setFilter] = useState({
+      currentPage: 0,
+      category: "",
+      author: ""
+    });
+
 
     const [authors, setAuthors] = useState(
       ["Alicja Pawlak","Ernest Hemingway", "J.K Rowling", "Janek Kowal"]
     )
 
-    const [currentPage, setCurrentPage] = useState(0);
-
-    const offset = currentPage * PER_PAGE;
+    const offset = filter.currentPage * PER_PAGE;
     const pageCount = Math.ceil(data.length / PER_PAGE);
 
     useEffect(() => {
       fetchData();
-    }, []);
+    }, [filter]);
 
     const fetchData = () => {
-      setData(books);
+      currentPageData();
     }
 
     const currentPageData = () => {
 
-      let filteredData = [...data]
+      let filteredData = [...books]
 
-      if (categories.includes(filter)) {
-        filteredData = data.filter((book) => book.category === filter)
-      } else if (authors.includes(filter)) {
-        filteredData = data.filter((book) => book.author === filter);
+      if (categories.includes(filter.category)) {      
+        filteredData = books.filter((book) => book.category === filter.category)
+      } else if (authors.includes(filter.author)) {
+        filteredData = books.filter((book) => book.author === filter.author);
       }
  
       const currentData = filteredData.slice(offset, offset+PER_PAGE).map((book) => (
         <Book book={book} />
       ));
+
       
-      return currentData;
+      setData(filteredData);
+      setDisplayedData(currentData);
     }
 
     const handlePageClick = (e) => {
       const selectedPage = e.selected;
-      setCurrentPage(selectedPage)
+      setFilter({currentPage: selectedPage, category: filter.category, author: filter.author})
   };
 
     return (
@@ -89,7 +95,7 @@ const BooksPage = () => {
                   <h6>Kategorie</h6>
                   {categories.map((category) => (
                     <li>
-                      <button onClick={() => setFilter(category)}>
+                      <button onClick={() => setFilter({currentPage: 0, category: category,  author: ""})}>
                         {category}
                       </button>
                     </li>
@@ -99,7 +105,7 @@ const BooksPage = () => {
                   <h6>Autor</h6>
                   {authors.map((author) => (
                     <li>
-                      <button onClick={() => setFilter(author)}>
+                      <button onClick={() => setFilter({currentPage: 0, category: "",  author: author})}>
                         {author}
                       </button>
                     </li>
@@ -111,7 +117,7 @@ const BooksPage = () => {
               <h3>Sprawdź najnowsze książki</h3>
               <hr />
               <div className="row">
-                {currentPageData()}
+                {displayedData}
                 <ReactPaginate
                   previousLabel={"prev"}
                   nextLabel={"next"}
