@@ -5,6 +5,8 @@ import Navigation from '../Shared/Navigation';
 import Book from './Book';
 import './books.css';
 
+const PER_PAGE = 10;
+
 const BooksPage = () => {
 
     const [books, setBooks] = useState([
@@ -31,37 +33,41 @@ const BooksPage = () => {
     const [authors, setAuthors] = useState(
       ["Alicja Pawlak","Ernest Hemingway", "J.K Rowling", "Janek Kowal"]
     )
-    const[offset, setOffset] = useState(0);
-    const[perPage] = useState(10);
-    const[pageCount, setPageCount] = useState(0);
 
-    const getBooks = () => {
+    const [currentPage, setCurrentPage] = useState(0);
 
-      let data = [...books];
+    const offset = currentPage * PER_PAGE;
+    const pageCount = Math.ceil(data.length / PER_PAGE);
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+
+    const fetchData = () => {
+      setData(books);
+    }
+
+    const currentPageData = () => {
+
+      let filteredData = [...data]
 
       if (categories.includes(filter)) {
-        data = data.filter((book) => book.category === filter)
+        filteredData = data.filter((book) => book.category === filter)
       } else if (authors.includes(filter)) {
-        data = data
-          .filter((book) => book.author === filter)
+        filteredData = data.filter((book) => book.author === filter);
       }
-
+ 
+      const currentData = filteredData.slice(offset, offset+PER_PAGE).map((book) => (
+        <Book book={book} />
+      ));
       
-      const postData = data.slice(offset, offset+perPage);
-      console.log(postData);
-      setData(postData);
-      setPageCount(Math.ceil(data.length / perPage));
-
+      return currentData;
     }
 
     const handlePageClick = (e) => {
       const selectedPage = e.selected;
-      setOffset(selectedPage + 1)
+      setCurrentPage(selectedPage)
   };
-
-    useEffect(() => {
-      getBooks();
-    }, [offset, filter])
 
     return (
       <div>
@@ -105,9 +111,7 @@ const BooksPage = () => {
               <h3>Sprawdź najnowsze książki</h3>
               <hr />
               <div className="row">
-                {data.map((book) => (
-                  <Book book={book} />
-                ))}
+                {currentPageData()}
                 <ReactPaginate
                   previousLabel={"prev"}
                   nextLabel={"next"}
