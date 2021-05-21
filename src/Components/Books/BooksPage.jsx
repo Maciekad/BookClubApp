@@ -1,32 +1,20 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import Footer from '../Shared/Footer';
 import Navigation from '../Shared/Navigation';
 import Book from './Book';
 import './books.css';
 
-const PER_PAGE = 10;
+const PER_PAGE = 12;
+const apiKey = "AIzaSyDnHPh0GQWRkyWnMr2CeJI1ZV5M1xcGNNQ";
 
 const BooksPage = () => {
 
-    const [books, setBooks] = useState([
-        {number: 1, title: 'Pożegnanie z bronią', author: 'Ernest Hemingway', category: "Obyczajowe", img: "https://cdn-lubimyczytac.pl/upload/books/50000/50776/352x500.jpg"},
-        {number: 2, title: 'Harry Potter i Więznień Azkabanu', author: 'J.K Rowling', category: "Fantastyka",  img: "https://kbimages1-a.akamaihd.net/82b4eff1-fbcf-44ed-952c-1c9e21198d10/1200/1200/False/harry-potter-i-wiezien-azkabanu.jpg"},
-        {number: 3, title: 'Pożegnanie z bronią', author: 'Ernest Hemingway', category: "Obyczajowe",  img: "https://images.unsplash.com/photo-1619060303466-f59b9e35e2e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-        {number: 4, title: 'Andrzej Duda', author: 'Janek Kowal', category: "Biografie", img: "https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"},
-    ]);
     const [data, setData] = useState([]);
     const [displayedData, setDisplayedData] = useState([])
     const [categories, setCategories] = useState(
-      ["Beletrystyka", "Biografie i pamiętniki", "Biznes i ekonomia", "Fantastyka", "Romanse", "Obyczajowe"]
+      ["Biographies", "Business", "Computer & Tech", "Cooking", "Entertainment", "Health & Fitness", "History", "Fiction", "Sports", "Travel"]
       );
     
     const [filter, setFilter] = useState({
@@ -37,7 +25,7 @@ const BooksPage = () => {
 
 
     const [authors, setAuthors] = useState(
-      ["Alicja Pawlak","Ernest Hemingway", "J.K Rowling", "Janek Kowal"]
+      ["Olga Tokarczuk","Ernest Hemingway", "J.K Rowling", "Blanka Lipińska"]
     )
 
     const offset = filter.currentPage * PER_PAGE;
@@ -48,26 +36,26 @@ const BooksPage = () => {
     }, [filter]);
 
     const fetchData = () => {
-      currentPageData();
-    }
 
-    const currentPageData = () => {
+      let url = "https://www.googleapis.com/books/v1/volumes?q=javascript&orderBy=newest&key="+apiKey+"&maxResults=40";
 
-      let filteredData = [...books]
-
-      if (categories.includes(filter.category)) {      
-        filteredData = books.filter((book) => book.category === filter.category)
-      } else if (authors.includes(filter.author)) {
-        filteredData = books.filter((book) => book.author === filter.author);
+      if(filter.author !== ""){
+        url = "https://www.googleapis.com/books/v1/volumes?q=inauthor:"+filter.author+"&orderBy=newest&key="+apiKey+"&maxResults=40";
+      }else if(filter.category !== ""){
+        url = "https://www.googleapis.com/books/v1/volumes?q=subject:"+filter.category+"&orderBy=newest&key="+apiKey+"&maxResults=40";
       }
- 
-      const currentData = filteredData.slice(offset, offset+PER_PAGE).map((book) => (
-        <Book book={book} />
-      ));
 
-      
-      setData(filteredData);
-      setDisplayedData(currentData);
+      axios.get(url)
+      .then(data => {
+        const books = data.data.items.filter(item => item.language !== "pl");
+        const currentData = books.slice(offset, offset+PER_PAGE).map((book) => (
+          <Book book={book} />
+        ));
+        console.log(currentData)
+        setData(books)
+        setDisplayedData(currentData)
+      })
+
     }
 
     const handlePageClick = (e) => {
