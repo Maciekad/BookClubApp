@@ -6,6 +6,7 @@ import {
 import './App.css';
 import HomePage from './Components/Home/HomePage';
 import BooksPage from './Components/Books/BooksPage';
+import BookDetails from "./Components/Books/BookDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/books">
             <BooksPage />
           </Route>
+          <Route path="/:id" children={<BookDetails/>}/>
         </Switch>
       </div>
     </Router>
