@@ -40,7 +40,7 @@ const BookDetails = () => {
               {book.volumeInfo && book.volumeInfo.imageLinks ? (
                 <img
                   className="shadow rounded"
-                  width="130%"
+                  width="230px"
                   height="350px"
                   src={book.volumeInfo.imageLinks.thumbnail}
                 />
