@@ -1,6 +1,14 @@
 .header {
     height: 600px;
   }
+  .container{
+    margin: 30px !important;
+  }
+  .description{
+    height: 200px;
+    text-overflow: ellipsis;
+    overflow-y: hidden;
+  }
   
   .button {
     text-decoration: none;
@@ -23,12 +31,7 @@
   li button:hover {
     color: #7aad8c; 
   }
-  a {
-    color: white !important;
-  }
-  a:hover {
-    text-decoration: none !important;
-  }
+
   li {
     list-style: none;
     color: #343c46 !important;
@@ -84,3 +87,4 @@
   .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
     border-radius: unset
   }
+  
