@@ -16,7 +16,7 @@ const Book = ({ book }) => {
           <h5 className="card-title">{book.volumeInfo.title}</h5>
           <p className="card-text">{book.volumeInfo.authors}</p>
           <button className="button" onClick={() => {
-            history.push({pathname: `/${book.volumeInfo.title}`});
+            history.push({pathname: `/${book.id}`});
           }}>
             Sprawdź
           </button>
