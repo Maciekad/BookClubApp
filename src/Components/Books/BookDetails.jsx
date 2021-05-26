@@ -23,45 +23,47 @@ const BookDetails = () => {
     return (
       <div>
         <Navigation />
-        <div className="container">
-          <div className="row mt-4">
-            <div className="col-12">
-              <Link
-                to="/books"
-                style={{ textDecoration: "none", color: "#343c46" }}
-              >
-                <i className="fas fa-chevron-left"></i>
-                <span className="font-weight-bold ml-1">
-                  Return to books list
-                </span>
-              </Link>
-            </div>
+        <div style={{ margin: "30px" }}>
+          <div className="col-12 mx-4 my-4">
+            <Link
+              to="/books"
+              style={{ textDecoration: "none", color: "#343c46" }}
+            >
+              <i className="fas fa-chevron-left"></i>
+              <span className="font-weight-bold ml-1">
+                &nbsp;Return to books list
+              </span>
+            </Link>
           </div>
-          <div className="row mt-4">
-            <div className="col-3">
-              {book.volumeInfo && book.volumeInfo.thumbnail ? (
+          <div className="row mx-2 my-4">
+            <div className="col-2 mx-3">
+              {book.volumeInfo && book.volumeInfo.imageLinks ? (
                 <img
                   className="shadow rounded"
-                  width="100%"
+                  width="130%"
                   height="350px"
                   src={book.volumeInfo.imageLinks.thumbnail}
                 />
               ) : (
                 <img
                   className="rounded"
-                  width="100%"
+                  width="230px"
                   height="350px"
                   src="https://capitalbook.com.pl/environment/cache/images/500_500_productGfx_4056/Jerzy-Robert-Nowak-Andrzej-Duda-biografia-prawdziwa_842_1200.jpg"
                 />
               )}
             </div>
-            <div className="col-9">
+            <div className="col-8 mx-5">
               {book.volumeInfo && <h3>{book.volumeInfo.title}</h3>}
               {book.volumeInfo && <h6>{book.volumeInfo.authors}</h6>}
-              {book.volumeInfo && (
+              {book.volumeInfo && book.volumeInfo.description ? (
                 <p className="description mt-3">
-                  {book.volumeInfo.description}
+                  {book.volumeInfo.description
+                    .toString()
+                    .replace(/(<([^>]+)>)/gi, "")}
                 </p>
+              ) : (
+                <p className="description mt-3">Brak opisu</p>
               )}
               <a
                 className="button"
@@ -72,33 +74,31 @@ const BookDetails = () => {
               </a>
             </div>
           </div>
-          {id}
+
           <hr></hr>
-          <div className="row">
-            <div className="col-12">
-              <h3 className="mb-4">Szczegóły</h3>
-              <p>
-                <b>Wydawca: </b>
-                {book.volumeInfo && (
-                  <p>
-                    {book.volumeInfo.publisher} ({book.volumeInfo.publishedDate}
-                    )
-                  </p>
-                )}
-              </p>
-              <p>
-                <b>Język: </b>
-                {book.volumeInfo && <p>{book.volumeInfo.language}</p>}
-              </p>
-              <p>
-                <b>Mięka oprawa: </b>
-                {book.volumeInfo && <p>{book.volumeInfo.pageCount} str.</p>}
-              </p>
-              <p>
-                <b>Kategoria: </b>
-                {book.volumeInfo && <p>{book.volumeInfo.categories}</p>}
-              </p>
-            </div>
+
+          <div className="col-7 mx-5">
+            <h3 className="mb-4">Szczegóły</h3>
+            <p>
+              <b>Wydawca: </b>
+              {book.volumeInfo && (
+                <p>
+                  {book.volumeInfo.publisher} ({book.volumeInfo.publishedDate})
+                </p>
+              )}
+            </p>
+            <p>
+              <b>Język: </b>
+              {book.volumeInfo && <p>{book.volumeInfo.language}</p>}
+            </p>
+            <p>
+              <b>Mięka oprawa: </b>
+              {book.volumeInfo && <p>{book.volumeInfo.pageCount} str.</p>}
+            </p>
+            <p>
+              <b>Kategoria: </b>
+              {book.volumeInfo && <p>{book.volumeInfo.categories}</p>}
+            </p>
           </div>
         </div>
       </div>
