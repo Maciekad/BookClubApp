@@ -7,6 +7,7 @@ import './App.css';
 import HomePage from './Components/Home/HomePage';
 import BooksPage from './Components/Books/BooksPage';
 import BookDetails from "./Components/Books/BookDetails";
+import Footer from "./Components/Shared/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           </Route>
           <Route path="/:id" children={<BookDetails/>}/>
         </Switch>
+        <Footer/>
       </div>
     </Router>
   );

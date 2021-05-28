@@ -1,7 +1,7 @@
 const Offert = () => {
   return (
     <div className="offert mt-5 pt-5">
-      <div className="container col-12">
+      <div className="col-12">
         <div className="row">
           <figure className="figure col-12 col-lg-4 text-center">
             <img

@@ -13,7 +13,6 @@ const HomePage = () => {
       <Offert/>
        <Video/>
       <Gallery/>
-      <Footer/>
     </div>
   );
 };

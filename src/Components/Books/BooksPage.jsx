@@ -125,7 +125,6 @@ const BooksPage = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
 }
