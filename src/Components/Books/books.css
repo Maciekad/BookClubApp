@@ -5,11 +5,22 @@
     margin: 30px !important;
   }
   .description{
-    height: 100px;
+    height: 150px;
     text-overflow: ellipsis;
     overflow-y: hidden;
+
   }
-  
+  .white-shadow{
+    position: absolute;
+    margin-top: -115px;
+    height: 30px;
+    /* background-color: white; */
+    box-shadow: -10px 70px 40px 20px rgb(255, 255, 255);
+    opacity: 0.99;
+    width: 1000px;
+
+  }
+
   .button {
     text-decoration: none;
     font-size: small;
@@ -23,6 +34,7 @@
     padding: 0.7em 1.2em;
     border-radius: 5px;
     border: 1px solid rgba(255, 252, 252, 0.781);
+    z-index: 10;
   }
   li button {
     border: none;
