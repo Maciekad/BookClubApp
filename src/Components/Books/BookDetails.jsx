@@ -21,7 +21,10 @@ const BookDetails = () => {
       date: "",
       rating: 1,
     });
-    
+    const [showLess, setShowMore] = useState(false);
+    const showMore = () => {
+      setShowMore(!showLess);
+    }
     useEffect(() => {
       axios
         .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
@@ -98,14 +101,17 @@ const BookDetails = () => {
               {book.volumeInfo && <h3>{book.volumeInfo.title}</h3>}
               {book.volumeInfo && <h6>{book.volumeInfo.authors}</h6>}
               {book.volumeInfo && book.volumeInfo.description ? (
-                <p className="description mt-3">
+                <p className={showLess ? "mt-3" : "description mt-3"}>
                   {book.volumeInfo.description
                     .toString()
                     .replace(/(<([^>]+)>)/gi, "")}
                 </p>
+                
+                
               ) : (
                 <p className="description mt-3">Brak opisu</p>
               )}
+              <button  onClick={showMore}>{showLess ? "Hide" : "Show more"}</button>
               <button className="button">Dodaj do ulubionych</button>
             </div>
           </div>

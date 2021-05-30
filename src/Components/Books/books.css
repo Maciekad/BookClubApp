@@ -5,7 +5,7 @@
     margin: 30px !important;
   }
   .description{
-    height: 200px;
+    height: 100px;
     text-overflow: ellipsis;
     overflow-y: hidden;
   }
