@@ -48,20 +48,20 @@ const BookDetails = () => {
       let name = e.target.name;
       let value = e.target.value;
 
-      console.log(name)
-      console.log(value)
-
       setOpinion((prevOpinion) => ({ ...prevOpinion, [name]: value }));
     }
 
 
     const calculateAverageRating = () => {
       let sum = 0;
-      let i;
-      for(i = 0; i<opinions.length; i++){
+      let result = 0;
+      for(let i = 0; i<opinions.length; i++){
         sum += opinions[i].rating
       }
-      return sum/opinions.length;
+
+      result = sum/opinions.length;
+
+      return Math.round(result*10)/10;
     }
 
     return (
@@ -106,12 +106,12 @@ const BookDetails = () => {
                     .toString()
                     .replace(/(<([^>]+)>)/gi, "")}
                 </p>
-                
-                
               ) : (
                 <p className="description mt-3">Brak opisu</p>
               )}
-              <button  onClick={showMore}>{showLess ? "Hide" : "Show more"}</button>
+              <button className="button" onClick={showMore}>
+                {showLess ? "Hide" : "Show more"}
+              </button>
               <button className="button">Dodaj do ulubionych</button>
             </div>
           </div>
@@ -171,11 +171,18 @@ const BookDetails = () => {
                       </label>
                     );
                   })}
-                  <span className="ml-1">&nbsp; {calculateAverageRating()}/5</span>
+                  <span className="ml-1">
+                    &nbsp; {calculateAverageRating()}/5
+                  </span>
                   <p className="mt-2">{opinions.length} opinie</p>
                   <h3 className="mt-2">Oceń książkę</h3>
                   <p className="mb-3">Podziel się swoją opinią z innymi</p>
-                  <OpinionForm handleRatingChange={handleRatingChange} opinion={opinion} handleSubmit={handleSubmit} changeHandler={changeHandler}/>
+                  <OpinionForm
+                    handleRatingChange={handleRatingChange}
+                    opinion={opinion}
+                    handleSubmit={handleSubmit}
+                    changeHandler={changeHandler}
+                  />
                 </div>
                 <div className="col-4 mx-5">
                   <h3 className="mb-4">Ostatnie opinie</h3>
@@ -184,7 +191,6 @@ const BookDetails = () => {
                   ))}
 
                   <br />
-                  
                 </div>
               </div>
             </div>
