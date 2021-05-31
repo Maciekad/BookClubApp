@@ -105,13 +105,16 @@ const BookDetails = () => {
                   {book.volumeInfo.description
                     .toString()
                     .replace(/(<([^>]+)>)/gi, "")}
+    
                 </p>
                 
                 
               ) : (
                 <p className="description mt-3">Brak opisu</p>
               )}
-              <button  onClick={showMore}>{showLess ? "Hide" : "Show more"}</button>
+              <div className={showLess?"":"white-shadow"}></div>
+              <button className={showLess ? "mt-5" : "mt-1"}  onClick={showMore}>{showLess ? "Hide" : "Show more"}</button>
+
               <button className="button">Dodaj do ulubionych</button>
             </div>
           </div>
