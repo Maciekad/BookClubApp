@@ -26,7 +26,7 @@ const Opinion = ({ opinion }) => {
         })}
         <span className="ml-1"> &nbsp;{opinion.description}</span>
         <div className="mt-1">
-          <small>Opinia napisana dnia {opinion.date}</small>
+          <small>Opinia napisana dnia: {opinion.date}</small>
         </div>
       </div>
     );

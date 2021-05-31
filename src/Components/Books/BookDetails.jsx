@@ -6,6 +6,7 @@ import Navigation from "../Shared/Navigation";
 import './books.css';
 import Opinion from "./Opinion";
 import OpinionForm from "./OpinionForm";
+import moment from 'moment';
 
 const BookDetails = () => {
     let { id } = useParams();
@@ -48,20 +49,23 @@ const BookDetails = () => {
       let name = e.target.name;
       let value = e.target.value;
 
-      console.log(name)
-      console.log(value)
+      let now = new Date();
+      var currentDate = moment(now).format("YYYY-MM-DD HH:MM:SS");
 
-      setOpinion((prevOpinion) => ({ ...prevOpinion, [name]: value }));
+      setOpinion((prevOpinion) => ({ ...prevOpinion, [name]: value, date: currentDate }));
     }
 
 
     const calculateAverageRating = () => {
       let sum = 0;
-      let i;
-      for(i = 0; i<opinions.length; i++){
+      let result = 0;
+      for(let i = 0; i<opinions.length; i++){
         sum += opinions[i].rating
       }
-      return sum/opinions.length;
+
+      result = sum/opinions.length;
+
+      return Math.round(result*10)/10;
     }
 
     return (
@@ -100,20 +104,47 @@ const BookDetails = () => {
             <div className="col-8 mx-5">
               {book.volumeInfo && <h3>{book.volumeInfo.title}</h3>}
               {book.volumeInfo && <h6>{book.volumeInfo.authors}</h6>}
+              <div>
+                {[...Array(5)].map((star, i) => {
+                  const ratingValue = i + 1;
+
+                  return (
+                    <label>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={calculateAverageRating()}
+                      />
+                      <FaStar
+                        className="star"
+                        color={
+                          ratingValue <= calculateAverageRating()
+                            ? "#ffc107"
+                            : "#e4e5e9"
+                        }
+                        size={18}
+                      />
+                    </label>
+                  );
+                })}
+                &nbsp; <a href="#opinions">Liczba ocen: {opinions.length}</a>
+              </div>
               {book.volumeInfo && book.volumeInfo.description ? (
                 <p className={showLess ? "mt-3" : "description mt-3"}>
                   {book.volumeInfo.description
                     .toString()
                     .replace(/(<([^>]+)>)/gi, "")}
-    
                 </p>
-                
-                
               ) : (
                 <p className="description mt-3">Brak opisu</p>
               )}
-              <div className={showLess?"":"white-shadow"}></div>
-              <button className={showLess ? "mt-5" : "mt-1"}  onClick={showMore}>{showLess ? "Hide" : "Show more"}</button>
+              <div className={showLess ? "" : "white-shadow"}></div>
+              <button
+                className={showLess ? "button mt-5" : "button mt-1"}
+                onClick={showMore}
+              >
+                {showLess ? "Hide" : "Show more"}
+              </button>
 
               <button className="button">Dodaj do ulubionych</button>
             </div>
@@ -147,11 +178,11 @@ const BookDetails = () => {
 
           <hr></hr>
 
-          <div className="container">
-            <div className="col-12 mb-5">
+          <div id="opinions">
+            <div className="col-10 mb-5 mx-5">
               <div className="row">
                 <div className="col-6">
-                  <h3 className="mb-4">Opinie użytkowników</h3>
+                  <h3 className="mb-4" >Opinie użytkowników</h3>
                   {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;
 
@@ -174,11 +205,18 @@ const BookDetails = () => {
                       </label>
                     );
                   })}
-                  <span className="ml-1">&nbsp; {calculateAverageRating()}/5</span>
+                  <span className="ml-1">
+                    &nbsp; {calculateAverageRating()}/5
+                  </span>
                   <p className="mt-2">{opinions.length} opinie</p>
                   <h3 className="mt-2">Oceń książkę</h3>
                   <p className="mb-3">Podziel się swoją opinią z innymi</p>
-                  <OpinionForm handleRatingChange={handleRatingChange} opinion={opinion} handleSubmit={handleSubmit} changeHandler={changeHandler}/>
+                  <OpinionForm
+                    handleRatingChange={handleRatingChange}
+                    opinion={opinion}
+                    handleSubmit={handleSubmit}
+                    changeHandler={changeHandler}
+                  />
                 </div>
                 <div className="col-4 mx-5">
                   <h3 className="mb-4">Ostatnie opinie</h3>
@@ -187,7 +225,6 @@ const BookDetails = () => {
                   ))}
 
                   <br />
-                  
                 </div>
               </div>
             </div>

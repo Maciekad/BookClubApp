@@ -5,7 +5,7 @@
     margin: 30px !important;
   }
   .description{
-    height: 150px;
+    height: 160px;
     text-overflow: ellipsis;
     overflow-y: hidden;
 
@@ -107,4 +107,5 @@
     cursor: pointer;
     transition: color 200ms;
   }
+  
   
