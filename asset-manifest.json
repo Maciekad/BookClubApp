@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/BookClubApp/static/css/main.2956fe39.chunk.css",
+    "main.js": "/BookClubApp/static/js/main.4aae09f9.chunk.js",
+    "main.js.map": "/BookClubApp/static/js/main.4aae09f9.chunk.js.map",
+    "runtime-main.js": "/BookClubApp/static/js/runtime-main.8c007156.js",
+    "runtime-main.js.map": "/BookClubApp/static/js/runtime-main.8c007156.js.map",
+    "static/css/2.800be05e.chunk.css": "/BookClubApp/static/css/2.800be05e.chunk.css",
+    "static/js/2.d726528e.chunk.js": "/BookClubApp/static/js/2.d726528e.chunk.js",
+    "static/js/2.d726528e.chunk.js.map": "/BookClubApp/static/js/2.d726528e.chunk.js.map",
+    "static/js/3.7b286d5e.chunk.js": "/BookClubApp/static/js/3.7b286d5e.chunk.js",
+    "static/js/3.7b286d5e.chunk.js.map": "/BookClubApp/static/js/3.7b286d5e.chunk.js.map",
+    "index.html": "/BookClubApp/index.html",
+    "static/css/2.800be05e.chunk.css.map": "/BookClubApp/static/css/2.800be05e.chunk.css.map",
+    "static/css/main.2956fe39.chunk.css.map": "/BookClubApp/static/css/main.2956fe39.chunk.css.map",
+    "static/js/2.d726528e.chunk.js.LICENSE.txt": "/BookClubApp/static/js/2.d726528e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8c007156.js",
+    "static/css/2.800be05e.chunk.css",
+    "static/js/2.d726528e.chunk.js",
+    "static/css/main.2956fe39.chunk.css",
+    "static/js/main.4aae09f9.chunk.js"
+  ]
+}
