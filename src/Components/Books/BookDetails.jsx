@@ -139,14 +139,14 @@ const BookDetails = () => {
                 <p className="description mt-3">Brak opisu</p>
               )}
               <div className={showLess ? "" : "white-shadow"}></div>
-              <button
-                className={showLess ? "button mt-5" : "button mt-1"}
+              <a
+                className={showLess ? "mt-5" : "mt-1"}
                 onClick={showMore}
               >
                 {showLess ? "Hide" : "Show more"}
-              </button>
+              </a>
 
-              <button className="button">Dodaj do ulubionych</button>
+              <button className="button mt-2">Dodaj do ulubionych</button>
             </div>
           </div>
 
