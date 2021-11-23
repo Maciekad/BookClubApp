@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/BookClubApp/static/css/main.2956fe39.chunk.css",
-    "main.js": "/BookClubApp/static/js/main.4aae09f9.chunk.js",
-    "main.js.map": "/BookClubApp/static/js/main.4aae09f9.chunk.js.map",
+    "main.js": "/BookClubApp/static/js/main.1c7be7a4.chunk.js",
+    "main.js.map": "/BookClubApp/static/js/main.1c7be7a4.chunk.js.map",
     "runtime-main.js": "/BookClubApp/static/js/runtime-main.8c007156.js",
     "runtime-main.js.map": "/BookClubApp/static/js/runtime-main.8c007156.js.map",
     "static/css/2.800be05e.chunk.css": "/BookClubApp/static/css/2.800be05e.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.800be05e.chunk.css",
     "static/js/2.d726528e.chunk.js",
     "static/css/main.2956fe39.chunk.css",
-    "static/js/main.4aae09f9.chunk.js"
+    "static/js/main.1c7be7a4.chunk.js"
   ]
 }
