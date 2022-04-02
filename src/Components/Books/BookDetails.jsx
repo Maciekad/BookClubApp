@@ -12,7 +12,7 @@ const BookDetails = () => {
     let { id } = useParams();
     const [book, setBook] = useState({});
     const [opinions, setOpinions] = useState([
-      { bookId: "", author: "Tomasz Kowal", description: "Do dupy", date: "20 stycznia 2020", rating: 4 },
+      { bookId: "", author: "Tomasz Kowal", description: "słabe", date: "20 stycznia 2020", rating: 4 },
       { bookId: "", author: "Pablo Hernandez", description: "Hola", date: "19 grudnia 2020", rating: 2 },
     ]);
     const [opinion, setOpinion] = useState({

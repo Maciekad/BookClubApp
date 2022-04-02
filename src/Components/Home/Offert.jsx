@@ -6,7 +6,9 @@ const Offert = () => {
           <figure className="figure col-12 col-lg-4 text-center">
             <img
               className="border rounded-circle shadow"
-              src="images/Roznorodnosc.png"
+              src="https://thumbs.dreamstime.com/b/bookworm-cheerful-black-teen-girl-reading-paper-book-resting-home-smiling-to-camera-little-reader-sitting-floor-leaning-213885683.jpg"
+              width="200px"
+              height="200px"
             />
             <figcaption className="figure-caption text-center mt-3">
               <h4>Każdy znajdzie coś dla siebie</h4>
@@ -20,7 +22,9 @@ const Offert = () => {
           <figure className="figure col-12 col-lg-4 text-center">
             <img
               className="border rounded-circle shadow"
-              src="images/pisanie.png"
+              src="https://img3.stockfresh.com/files/d/dolgachov/m/64/8546825_stock-photo-student-boy-reading-book-or-textbook-at-home.jpg"
+              width="200px"
+              height="200px"
             />
             <figcaption className="figure-caption text-center mt-3">
               <h4>Recenzuj z nami</h4>
@@ -33,7 +37,9 @@ const Offert = () => {
           <figure className="figure col-12 col-lg-4 text-center">
             <img
               className="border rounded-circle shadow"
-              src="images/ulubione.png"
+              src="https://us.123rf.com/450wm/carballo/carballo1801/carballo180100374/93884160-preadolescent-child-studying-with-books-in-the-home-room.jpg?ver=6"
+              width="200px"
+              height="200px"
             />
             <figcaption className="figure-caption text-center mt-3">
               <h4>Dodaj do ulubionych</h4>
